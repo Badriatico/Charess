@@ -97,15 +97,27 @@ img {
 }
 
 @keyframes spin {
-    0% { transform: rotateZ(0); }
-    25% { transform: rotateZ(10deg); }
-    50% { transform: rotateZ(0deg); }
-    75% { transform: rotateZ(-10deg); }
+    0% {
+        transform: rotateZ(0);
+    }
+
+    25% {
+        transform: rotateZ(10deg);
+    }
+
+    50% {
+        transform: rotateZ(0deg);
+    }
+
+    75% {
+        transform: rotateZ(-10deg);
+    }
 }
 
 .type-wrap {
     font-size: 25px;
     color: #C4515C;
+
 }
 
 .cake {
@@ -133,7 +145,7 @@ img {
     border-radius: .3em;
     text-transform: uppercase;
     box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(110, 80, 20, .4),
-        inset 0 -2px 5px 1px #b17d10,
+        inset 0 -2px 5px 1px rgba(139, 66, 8, 1),
         inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
     background-image: linear-gradient(160deg, #a54e07, #b47e11, #fef1a2, #bc881b, #a54e07);
     border: 1px solid #a55d07;
@@ -142,6 +154,7 @@ img {
     cursor: pointer;
     transition: all .2s ease-in-out;
     background-size: 100% 100%;
+    background-position: center;
 }
 
 /* Hover and active states */
@@ -162,14 +175,14 @@ img {
 }
 
 .modal {
-    display: none;
+    display: none; /* Hidden by default */
     position: fixed;
     z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
     transition: opacity 0.5s ease-in-out;
 }
 
@@ -185,7 +198,7 @@ img {
     padding: 20px;
     width: 80%;
     max-width: 800px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
     animation: slideIn 1s ease-out;
     overflow: hidden;
@@ -201,8 +214,8 @@ img {
 /* Ensure all images are the same size within the modal */
 .mySlides {
     display: none;
-    max-height: 500px;
-    object-fit: contain;
+    max-height: 500px; /* Keep the height consistent */
+    object-fit: contain; /* Preserve aspect ratio */
     width: 100%;
 }
 
@@ -212,63 +225,25 @@ img {
     border-radius: 10px;
 }
 
-/* Fade effect */
+/* Fade effect for images */
 .fade {
     animation-name: fade;
     animation-duration: 1.5s;
 }
 
+/* Fade effect */
 @keyframes fade {
     from { opacity: 0.4; }
     to { opacity: 1; }
 }
 
-/* Slide-in */
+/* Slide-in animation for modal */
 @keyframes slideIn {
-    from { transform: translateY(-200px); }
-    to { transform: translateY(0); }
-}
-
-/* 🔥🔥🔥 Added: SAME SIZE IMAGES 🔥🔥🔥 */
-.modal-content,
-.slideshow-container,
-.mySlides {
-    width: 100%;
-    height: 100%;
-}
-
-.mySlides img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
-}
-
-/* MOBILE */
-@media (max-width: 768px) {
-
-    .modal-content {
-        width: 90dvw !important;
-        height: 85dvh !important;
-        margin: auto !important;
-        margin-top: 5dvh !important;
-        border-radius: 12px !important;
-        padding: 10px !important;
-        max-width: 90dvw !important;
-        max-height: 85dvh !important;
+    from {
+        transform: translateY(-200px);
     }
-
-    .slideshow-container,
-    .mySlides {
-        width: 100%;
-        height: 100%;
-    }
-
-    .mySlides img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 10px;
+    to {
+        transform: translateY(0);
     }
 }
 
