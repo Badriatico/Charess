@@ -5,8 +5,7 @@
     position: fixed;
     left: 50%;
     top: 45%;
-    transform: translateY(-50%);
-    transform: translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
     background: center no-repeat #fff;
     z-index: 9999999999999999999999;
     font-size: 50px;
@@ -97,27 +96,15 @@ img {
 }
 
 @keyframes spin {
-    0% {
-        transform: rotateZ(0);
-    }
-
-    25% {
-        transform: rotateZ(10deg);
-    }
-
-    50% {
-        transform: rotateZ(0deg);
-    }
-
-    75% {
-        transform: rotateZ(-10deg);
-    }
+    0% { transform: rotateZ(0); }
+    25% { transform: rotateZ(10deg); }
+    50% { transform: rotateZ(0deg); }
+    75% { transform: rotateZ(-10deg); }
 }
 
 .type-wrap {
     font-size: 25px;
     color: #C4515C;
-
 }
 
 .cake {
@@ -128,52 +115,7 @@ img {
     padding-top: 250px;
 }
 
-/* Ensure the button is centered and styled properly */
-.loader button {
-    width: 50%;
-    height: 100px;
-    position: fixed;
-    left: 50%;
-    top: 45%;
-    transform: translateY(-50%) translateX(-50%);
-    background: center no-repeat #fff;
-    z-index: 9999999999999999999999;
-    font-size: 50px;
-    outline: none;
-    box-sizing: border-box;
-    border: none;
-    border-radius: .3em;
-    text-transform: uppercase;
-    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(110, 80, 20, .4),
-        inset 0 -2px 5px 1px rgba(139, 66, 8, 1),
-        inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
-    background-image: linear-gradient(160deg, #a54e07, #b47e11, #fef1a2, #bc881b, #a54e07);
-    border: 1px solid #a55d07;
-    color: rgb(120, 50, 5);
-    text-shadow: 0 2px 2px rgba(250, 227, 133, 1);
-    cursor: pointer;
-    transition: all .2s ease-in-out;
-    background-size: 100% 100%;
-    background-position: center;
-}
-
-/* Hover and active states */
-.golden-btn:focus,
-.golden-btn:hover {
-    background-size: 150% 150%;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23),
-        inset 0 -2px 5px 1px #b17d10,
-        inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
-    border: 1px solid rgba(165, 93, 7, .6);
-    color: rgba(120, 50, 5, .8);
-}
-
-.golden-btn:active {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, .16), 0 3px 6px rgba(110, 80, 20, .4),
-        inset 0 -2px 5px 1px #b17d10,
-        inset 0 -1px 1px 3px rgba(250, 227, 133, 1);
-}
-
+/* ---------------- MODAL & SLIDESHOW ---------------- */
 .modal {
     display: none; /* Hidden by default */
     position: fixed;
@@ -194,34 +136,34 @@ img {
 .modal-content {
     position: relative;
     background-color: #fff;
-    margin: 10% auto;
-    padding: 20px;
-    width: 80%;
-    max-width: 800px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    margin: 5% auto; /* Center the modal vertically */
+    padding: 0; /* Remove extra padding */
+    width: 90%; /* Large but not full screen */
+    max-width: 1000px; /* Maximum width on large screens */
+    max-height: 90vh; /* Don't exceed 90% of viewport height */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
     animation: slideIn 1s ease-out;
     overflow: hidden;
 }
 
-/* Slideshow Container */
+/* Slideshow Container takes full modal */
 .slideshow-container {
-    position: relative;
-    max-width: 100%;
+    width: 100%;
     height: 100%;
 }
 
-/* Ensure all images are the same size within the modal */
+/* Slides fill the modal */
 .mySlides {
     display: none;
-    max-height: 500px; /* Keep the height consistent */
-    object-fit: contain; /* Preserve aspect ratio */
     width: 100%;
+    height: 100%;
 }
 
 .mySlides img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover; /* Fills modal while preserving aspect ratio */
     border-radius: 10px;
 }
 
@@ -231,7 +173,6 @@ img {
     animation-duration: 1.5s;
 }
 
-/* Fade effect */
 @keyframes fade {
     from { opacity: 0.4; }
     to { opacity: 1; }
@@ -239,12 +180,14 @@ img {
 
 /* Slide-in animation for modal */
 @keyframes slideIn {
-    from {
-        transform: translateY(-200px);
-    }
-    to {
-        transform: translateY(0);
-    }
+    from { transform: translateY(-200px); }
+    to { transform: translateY(0); }
 }
 
-
+/* Responsive adjustments for mobile */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 95%; /* almost full width on mobile */
+        max-height: 80vh;
+    }
+}
