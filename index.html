@@ -128,15 +128,15 @@
         }
 
         // Close the modal
+        // Close the modal with fade-out
         function closeModal() {
             const modal = document.querySelector('.modal');
-            modal.classList.add('closing');
-
+            modal.classList.add('closing'); // add closing animation
             setTimeout(() => {
-                modal.classList.remove('open');
-                modal.classList.remove('closing');
-            }, 600); // matches fadeOutModal duration
+                modal.classList.remove('open', 'closing'); // hide after animation
+            }, 600); // match this with your CSS animation duration
         }
+
     </script>
 </body>
 
