@@ -96,10 +96,21 @@ img {
 }
 
 @keyframes spin {
-    0% { transform: rotateZ(0); }
-    25% { transform: rotateZ(10deg); }
-    50% { transform: rotateZ(0deg); }
-    75% { transform: rotateZ(-10deg); }
+    0% {
+        transform: rotateZ(0);
+    }
+
+    25% {
+        transform: rotateZ(10deg);
+    }
+
+    50% {
+        transform: rotateZ(0deg);
+    }
+
+    75% {
+        transform: rotateZ(-10deg);
+    }
 }
 
 .type-wrap {
@@ -117,14 +128,16 @@ img {
 
 /* ---------------- MODAL & SLIDESHOW ---------------- */
 .modal {
-    display: none; /* Hidden by default */
+    display: none;
+    /* Hidden by default */
     position: fixed;
     z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent background */
     transition: opacity 0.5s ease-in-out;
 }
 
@@ -136,11 +149,16 @@ img {
 .modal-content {
     position: relative;
     background-color: #fff;
-    margin: 5% auto; /* Center the modal vertically */
-    padding: 0; /* Remove extra padding */
-    width: 90%;       /* Large but not full screen */
-    max-width: 1000px;/* Maximum width on large screens */
-    max-height: 90vh; /* Don't exceed 90% of viewport height */
+    margin: 5% auto;
+    /* Center the modal vertically */
+    padding: 0;
+    /* Remove extra padding */
+    width: 90%;
+    /* Large but not full screen */
+    max-width: 1000px;
+    /* Maximum width on large screens */
+    max-height: 90vh;
+    /* Don't exceed 90% of viewport height */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
     animation: slideIn 1s ease-out;
@@ -157,14 +175,18 @@ img {
 .mySlides {
     display: none;
     width: 100%;
-    height: auto;        /* let height adjust automatically */
+    height: auto;
+    /* let height adjust automatically */
 }
 
 .mySlides img {
     width: 100%;
-    height: auto;        /* maintain aspect ratio */
-    max-height: 80vh;    /* prevent image from exceeding modal */
-    object-fit: contain;  /* show full image without cropping */
+    height: auto;
+    /* maintain aspect ratio */
+    max-height: 80vh;
+    /* prevent image from exceeding modal */
+    object-fit: contain;
+    /* show full image without cropping */
     border-radius: 10px;
 }
 
@@ -175,24 +197,44 @@ img {
 }
 
 @keyframes fade {
-    from { opacity: 0.4; }
-    to { opacity: 1; }
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* Slide-in animation for modal */
 @keyframes slideIn {
-    from { transform: translateY(-200px); }
-    to { transform: translateY(0); }
+    from {
+        transform: translateY(-200px);
+    }
+
+    to {
+        transform: translateY(0);
+    }
 }
 
 /* Responsive adjustments for mobile */
 @media (max-width: 600px) {
     .modal-content {
-        width: 95%; /* almost full width on mobile */
+        width: 95%;
+        /* almost full width on mobile */
         max-height: 80vh;
     }
 
     .mySlides img {
-        max-height: 70vh; /* smaller for mobile screens */
+        max-height: 70vh;
+        /* smaller for mobile screens */
     }
+}
+
+.modal video {
+    width: 100%;
+    height: auto;
+    max-height: 90vh;
+    border-radius: 10px;
+    display: block;
 }

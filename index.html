@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday</title>
+    <title>Happy Birthday Charess</title>
+    <link rel="icon" type="image/x-icon" href="img/cake.ico">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -15,6 +16,7 @@
             </div>
         </div>
     </div>
+
     <audio class="song" controls loop>
         <source src="music.mp3"></source>
         Your browser isn't invited for super fun audio time.
@@ -51,33 +53,13 @@
         <img src="img/Balloon-Border.png" width="100%" class="balloon-border">
     </div>
 
-    <!-- Modal (Photo Slideshow) -->
+    <!-- 🎬 MODAL (VIDEO INSTEAD OF SLIDESHOW) -->
     <div class="modal">
         <div class="modal-content">
-            <div class="slideshow-container">
-                <!-- Slides -->
-                <div class="mySlides fade">
-                    <img src="img/slideshow/a.jpg" alt="Photo 1">
-                </div>
-                <div class="mySlides fade">
-                    <img src="img/slideshow/b.jpg" alt="Photo 2">
-                </div>
-                <div class="mySlides fade">
-                    <img src="img/slideshow/c.jpg" alt="Photo 3">
-                </div>
-                 <div class="mySlides fade">
-                    <img src="img/slideshow/d.jpeg" alt="Photo 4">
-                </div>
-                <div class="mySlides fade">
-                    <img src="img/slideshow/e.jpeg" alt="Photo 5">
-                </div>
-                <div class="mySlides fade">
-                    <img src="img/slideshow/f.jpeg" alt="Photo 6">
-                </div>
-                <div class="mySlides fade">
-                    <img src="img/slideshow/g.jpeg" alt="Photo 7">
-                </div>
-            </div>
+            <video id="birthdayVideo" controls autoplay>
+                <source src="video/happy.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
         </div>
     </div>
 
@@ -87,47 +69,21 @@
     <script src="js/script.js"></script>
 
     <script>
-        // Show the modal after 6 seconds of clicking "Start" button
+        // Show the modal after clicking "Start" button
         document.getElementById('play').addEventListener('click', function () {
             setTimeout(function () {
                 document.querySelector('.modal').classList.add('open');
-                showSlides(); // Start the slideshow
-            }, 5000); // Show after 6 seconds
+                
+                // Play video automatically
+                const video = document.getElementById("birthdayVideo");
+                video.play();
+
+                // Close the modal automatically after video ends
+                video.onended = function () {
+                    document.querySelector('.modal').classList.remove('open');
+                };
+            }, 5000);  // Show after 5 seconds
         });
-
-        // Modal and Slideshow logic
-        var slideIndex = 0;
-        var slides = document.getElementsByClassName('mySlides');
-        var totalSlides = slides.length;
-        var shownSlides = 0; // Track how many slides have been shown
-
-        function showSlides() {
-            // Hide all slides initially
-            for (var i = 0; i < slides.length; i++) {
-                slides[i].style.display = 'none';
-            }
-            
-            slideIndex++;
-            if (slideIndex > totalSlides) {
-                slideIndex = 1;
-            }    
-
-            slides[slideIndex - 1].style.display = 'block'; // Show current slide
-            shownSlides++;
-
-            // If all slides have been shown, close the modal
-            if (shownSlides === totalSlides) {
-                setTimeout(closeModal, 2000); // Close modal after the last slide
-            }
-            
-            // Change image every 2 seconds
-            setTimeout(showSlides, 2000);
-        }
-
-        // Close the modal
-        function closeModal() {
-            document.querySelector('.modal').classList.remove('open');
-        }
     </script>
 </body>
 </html>
