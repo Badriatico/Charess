@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <div class="row">
@@ -18,7 +20,8 @@
     </div>
 
     <audio class="song" controls loop>
-        <source src="music.mp3"></source>
+        <source src="music.mp3">
+        </source>
         Your browser isn't invited for super fun audio time.
     </audio>
     <canvas id="confetti"></canvas>
@@ -53,13 +56,16 @@
         <img src="img/Balloon-Border.png" width="100%" class="balloon-border">
     </div>
 
-    <!-- 🎬 MODAL (VIDEO INSTEAD OF SLIDESHOW) -->
+    <!-- 🎬 MODAL (VIDEO WITH TYPING MESSAGE) -->
     <div class="modal">
         <div class="modal-content">
             <video id="birthdayVideo" controls autoplay>
-                <source src="video/happy.mp4" type="video/mp4">
+                <source src="hbd.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
+
+            <!-- 👇 ADDED THIS -->
+            <div id="messageText" class="typing-text"></div>
         </div>
     </div>
 
@@ -68,22 +74,72 @@
     <script src="js/typed.min.js"></script>
     <script src="js/script.js"></script>
 
-    <script>
-        // Show the modal after clicking "Start" button
-        document.getElementById('play').addEventListener('click', function () {
-            setTimeout(function () {
-                document.querySelector('.modal').classList.add('open');
-                
-                // Play video automatically
-                const video = document.getElementById("birthdayVideo");
-                video.play();
+   <script>
+    // Show the modal after clicking "Start" button
+    document.getElementById('play').addEventListener('click', function () {
+        setTimeout(function () {
+            document.querySelector('.modal').classList.add('open');
 
-                // Close the modal automatically after video ends
-                video.onended = function () {
+            const video = document.getElementById("birthdayVideo");
+            const audio = document.querySelector('.song'); // mp3 audio
+
+            // 🔊 VIDEO VOLUME = 50%
+            video.volume = 0.5;
+
+            // 🔇 MUTE MP3 WHEN MODAL SHOWS
+            audio.muted = true;
+
+            video.play();
+
+            // 🔥 Start message typing
+            line = 0;
+            messageBox.style.display = 'block';
+            typeLine();
+
+            // 🕒 CLOSE MODAL **2 SECONDS AFTER VIDEO ENDS**
+            video.onended = function () {
+                setTimeout(() => {
                     document.querySelector('.modal').classList.remove('open');
-                };
-            }, 5000);  // Show after 5 seconds
-        });
-    </script>
+                    messageBox.style.display = 'none';
+                    audio.muted = false;  // restore sound after closing
+                }, 2000); // 2s delay
+            };
+        }, 5000);
+    });
+
+    // 💬 MESSAGE LINES TO TYPE
+    const message = [
+        "Happy Birthday, Charess!",
+        "Today is all about celebrating you the kindness you share, the laughter you bring,",
+        "and the warmth you spread to everyone around you.",
+        "May this year bring you countless blessings, unforgettable memories, and happiness you truly deserve.",
+        "Keep shining, because the world is better with you in it."
+    ];
+
+    let line = 0;
+    const messageBox = document.getElementById("messageText");
+
+    // ⌨️ TYPING FUNCTION (LINE BY LINE)
+    function typeLine() {
+        if (line >= message.length) return;
+        let text = message[line];
+        let i = 0;
+        messageBox.innerHTML = "";
+
+        const typing = setInterval(() => {
+            messageBox.innerHTML += text.charAt(i);
+            i++;
+            if (i >= text.length) {
+                clearInterval(typing);
+                setTimeout(() => {
+                    line++;
+                    typeLine();
+                }, 1000);
+            }
+        }, 60);
+    }
+</script>
+
 </body>
+
 </html>
